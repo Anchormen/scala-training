@@ -1,4 +1,4 @@
-package nl.anchormen.scala_training.module1
+package nl.anchormen.scala_training.module1.examples
 
 /**
   * A simple functional program displaying several uses of a function value.

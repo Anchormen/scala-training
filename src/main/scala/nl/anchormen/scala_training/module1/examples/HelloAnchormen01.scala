@@ -1,4 +1,4 @@
-package nl.anchormen.scala_training.module1
+package nl.anchormen.scala_training.module1.examples
 
 /**
   * A marketed version of Hello World ;)
