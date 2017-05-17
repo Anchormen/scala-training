@@ -1,4 +1,4 @@
-package nl.anchormen.scala_training.module1.examples
+package nl.anchormen.scala_training.module1.example
 
 /**
   * A simple string wrapper.
