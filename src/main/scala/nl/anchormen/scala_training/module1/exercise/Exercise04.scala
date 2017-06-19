@@ -9,7 +9,7 @@ package nl.anchormen.scala_training.module1.exercise
   * 6) Add a print statement to each constructor that prints s"${getClass.getSimpleName} is created"
   * 7) Define: class Delta extends Base with Alpha with Beta with Gamma
   * 8) Instantiate Delta and call hello()
-  * 9) Observe the result and try to explain the output given linearization
+  * 9) Observe the result and try to explain the output given linearization, try reordering the trait order!
   */
 object Exercise04 {
   ???
