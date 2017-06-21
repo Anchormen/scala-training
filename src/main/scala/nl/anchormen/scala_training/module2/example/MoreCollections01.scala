@@ -31,4 +31,12 @@ object MoreCollections01 extends App {
 
   /*** Filter ***/
   thickList.flatten.filter(_ % 2 == 0) // List(2, 4, 6, 8)
+
+  /*** Reduce ***/
+  List(1, 2, 3, 4).reduce((acc, el) => acc + el) // Sums all elements to 10
+  1 to 4 reduce(_+_) // Also 10
+
+  /*** Fold left and right ***/
+  1 to 4 foldLeft("")((acc : String, el : Int) => acc + el)
+
 }
