@@ -33,10 +33,30 @@ object MoreCollections01 extends App {
   thickList.flatten.filter(_ % 2 == 0) // List(2, 4, 6, 8)
 
   /*** Reduce ***/
-  List(1, 2, 3, 4).reduce((acc, el) => acc + el) // Sums all elements to 10
-  1 to 4 reduce(_+_) // Also 10
+  List(1, 2, 3, 4).reduce(
+    (acc, el) => acc + el
+  ) // Sums all elements to 10
+  (1 to 4) reduce(_+_) // Also 10
+
+  Map(
+    Tuple2("a", 1), // Creating a Tuple with 2 elements
+    Tuple2("b", 2),
+    "c" -> 3,       // Syntactic sugar for a Tuple with 2 elements
+    "d" -> 4
+  ).reduce(
+    (acc : (String, Int), el : (String, Int)) => { // 2x type Tuple2[String, Int]
+      val key = acc._1 + el._1  // Element n of a tuple is accessed via _n
+      val value = acc._2 + el._2
+      (key, value)              // Third way of creating tuples
+    }
+  )
 
   /*** Fold left and right ***/
-  1 to 4 foldLeft("")((acc : String, el : Int) => acc + el)
+  (1 to 4).foldLeft("")(
+    (acc : String, el : Int) => acc + el.toString
+  )
+  (1 to 4).foldRight("")(
+    (el : Int, acc : String) => acc + el.toString
+  )
 
 }
