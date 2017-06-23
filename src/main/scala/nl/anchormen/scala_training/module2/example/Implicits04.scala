@@ -24,6 +24,19 @@ object Implicits04 extends App {
       }
     }
 
+  /*** Implicit conversion ***/
+  implicit def agentCodename(i: Int) = s"00$i"
+  def hello(name: String) = s"Hello, $name!"
+  hello(7)  // "Hello, 007!"
+
+  /*** Implicit wrapping ***/
+  implicit class Agent(code: Int) {
+    def codename = s"00$code"
+  }
+  def hello2(agent: Agent) = s"Hello, ${agent.codename}!"
+  hello2(7)
+  // "Hello, 007!"
+
 }
 
 /**
