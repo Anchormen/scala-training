@@ -34,8 +34,32 @@ object Implicits04 extends App {
     def codename = s"00$code"
   }
   def hello2(agent: Agent) = s"Hello, ${agent.codename}!"
-  hello2(7)
-  // "Hello, 007!"
+  hello2(7)  // "Hello, 007!"
+
+  type Json = String
+  trait Jsonable[T]{
+    def serialize(t: T): Json
+  }
+  object Jsonable{
+    implicit object StringJsonable extends Jsonable[String]{
+      def serialize(t: String) = t
+    }
+    implicit object DoubleJsonable extends Jsonable[Double]{
+      def serialize(t: Double) = t.toString
+    }
+    implicit object IntJsonable extends Jsonable[Int]{
+      def serialize(t: Int) = t.toString
+    }
+  }
+
+  def convertToJson[T](x: T)(implicit converter: Jsonable[T]): Json = {
+    converter.serialize(x)
+  }
+
+  convertToJson("hello")
+  convertToJson(123)
+  convertToJson(123.56)
+//  convertToJson('a') // Error
 
 }
 
@@ -86,15 +110,15 @@ object Motivation {
   */
 object MotivationWithImplicits {
   type DbConnection = String
-  type Statistics = String
-  type Logger = String
-  type Smtp = String
+  class Statistics
+  class Logger
+  class Smtp
 
   def manipulateData() : Unit = {
     implicit val dbConnection : DbConnection= "someDbConnection"
-    implicit val statistics : Statistics = "someStatistics"
-    implicit val logger : Logger = "someLogger"
-    implicit val email : Smtp = "emailConnection"
+    implicit val statistics : Statistics = new Statistics
+    implicit val logger : Logger = new Logger
+    implicit val email : Smtp = new Smtp
 
     val tick = System.currentTimeMillis()
     val result = performSomeQuery("DROP DATABASE")
