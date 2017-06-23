@@ -30,11 +30,13 @@ object Implicits04 extends App {
   hello(7)  // "Hello, 007!"
 
   /*** Implicit wrapping ***/
-  implicit class Agent(code: Int) {
-    def codename = s"00$code"
+  implicit class RichInt(i: Int) {
+    def addFoo : String = i + "_foo"
+    def addBar : String = i + "_bar"
   }
-  def hello2(agent: Agent) = s"Hello, ${agent.codename}!"
-  hello2(7)  // "Hello, 007!"
+
+  println(10.addFoo)
+  println(10.addBar)
 
   type Json = String
   trait Jsonable[T]{
